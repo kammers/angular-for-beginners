@@ -1,6 +1,26 @@
-<div style="">
-  <h1>Welcome to {{data.title}}!</h1>
-  <img src="https://angular.io/assets/images/logos/angular/angular.svg" (click)='onLogoClicked()' alt="Angular Logo"
-    width="300">
+<div class="top-menu">
+
+  <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+
 </div>
-<input class="demo" (keyup)='onKeyUp(titleInput.value)' [value]="data.title" #titleInput>
+
+<!-- <div class="demo">
+  <div>Start Date: {{startDate | date: 'dd.MM.yyyy'}}</div>
+  <div>{{price | currency: 'EUR'}}</div>
+  <div>Percentage {{rate | percent}}</div>
+</div>
+
+{{courses | json}} -->
+
+<div *ngFor='let pair of course | keyvalue'>
+  {{pair.key + ': ' + pair.value}}
+</div>
+
+
+<div class="courses">
+
+  <course-card *ngFor='let course of courses | slice:0:2;index as i;' (courseSelected)="onCourseSelected($event)"
+    [course]="course" [cardIndex]='i + 1'>
+  </course-card>
+
+</div>
